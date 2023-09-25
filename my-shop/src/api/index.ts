@@ -17,17 +17,25 @@ const getToken = async (name: string, pass: string) => {
     const userInfo = JSON.stringify({
         username: name,
         password: pass, 
-        token: res.token
+        token: res.token,
+        status: true,
       })
     cookie.set('user', userInfo)
   }
 }
 
-// const getAuth = () => {
-//   console.log(cookie.get('user'))
-// }
+const getAuth = async () => {
+  const result: any = cookie.get('user'); // Доработать типы!!!
+ 
+  if(result){
+    const name: string = result.username;
+    const pass: string = result.password;
+    await getToken(name, pass)
+  }
 
-export { getToken }
+}
+
+export { getToken, getAuth }
 
 // username: mor_2314
 // password: 83r5^_

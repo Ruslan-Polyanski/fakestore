@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-// import { getAuth } from '../../api';
-// import { Dispatch } from 'redux';
+import { getAuth } from '../../api';
+import { Dispatch } from 'redux';
 
 const preloaderSlice = createSlice({
   name: '@@preloader',
@@ -12,14 +12,15 @@ const preloaderSlice = createSlice({
   }
 });
 
-// const { setPreloader } = preloaderSlice.actions;
+const { setPreloader } = preloaderSlice.actions;
 
-// const getAuthorization = (name: string, pass: string) => {
-//   return (dispatch: Dispatch) => {
-//     dispatch(setPreloader(true))
-//     getAuth()
-//     dispatch(setPreloader(false))
-//   }
-// };
+const getAuthorization = () => {
+  return (dispatch: Dispatch) => {
+    dispatch(setPreloader(true))
+    getAuth().finally(() => {
+      dispatch(setPreloader(false))
+    })
+  }
+};
 
-export { preloaderSlice }
+export { preloaderSlice, getAuthorization }

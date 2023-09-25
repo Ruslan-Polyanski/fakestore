@@ -4,12 +4,15 @@ import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import { getToken } from '../../../api';
+import { getDataUser } from '../../../features/user/user-slice';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../../../store';
 
 export default function ButtonLoginForm() {
   const [open, setOpen] = useState(false);
   const [name, setName] = useState('');
   const [pass, setPass] = useState('');
+  const dispatch: AppDispatch = useDispatch();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -21,7 +24,7 @@ export default function ButtonLoginForm() {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    getToken(name, pass)
+    dispatch(getDataUser(name, pass))
     setName('')
     setPass('')
   };
