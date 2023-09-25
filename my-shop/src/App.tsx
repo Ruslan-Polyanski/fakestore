@@ -1,15 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import { ButtonLoginForm } from './components/form/loginForm';
 import { LogOut } from './components/button/logOut';
 import { Preloader } from './features/preloader';
-import { useSelector } from 'react-redux';
-import { RootState } from './store';
+import { getAuthorization } from './features/preloader/preloader-slice';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState, AppDispatch } from './store';
+
 
 const selectorPreloader = (state: RootState) => state.preloader.isPreloader;
+const selectorIsLogin = (state: RootState) => state.user.status;
 
 const App = () => {
   const isPreloader = useSelector(selectorPreloader);
+  const buttonLogin = useSelector(selectorIsLogin);
+  const dispatch: AppDispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAuthorization())
+  }, [dispatch])
 
   if( isPreloader ) {
     return <Preloader />
@@ -19,14 +28,13 @@ const App = () => {
     <>
       <header className='header'>
         <div className='logo'>Logo</div>
-        <LogOut />
-        <ButtonLoginForm />
+        {buttonLogin ? <LogOut /> : <ButtonLoginForm />}
       </header>
       <div>Text</div>
       <footer>copyright ©</footer>
     </>
   )
-  
+
 }
 
 export default App;
