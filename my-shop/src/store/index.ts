@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { preloaderSlice } from '../features/preloader/preloader-slice';
 import { userSlice } from '../features/user/user-slice';
 import { productSlice } from '../features/products/products-slice';
+import { productPageSlice } from '../features/product/product-slice';
 
 
 const store = configureStore({
@@ -9,6 +10,7 @@ const store = configureStore({
     preloader: preloaderSlice.reducer,
     user: userSlice.reducer,
     products: productSlice.reducer,
+    product: productPageSlice.reducer,
   },
   devTools: true,
 });

@@ -44,7 +44,16 @@ const getAllProducts = async () => {
   }
 }
 
-export { getToken, getAuth, getAllProducts }
+const getProductDataAPI = async (id: string) => {
+  const response = await fetch(`https://fakestoreapi.com/products/${id}`);
+
+  if(response.ok){
+    const data = response.json();
+    return data;
+  }
+}
+
+export { getToken, getAuth, getAllProducts, getProductDataAPI }
 
 // username: mor_2314
 // password: 83r5^_
