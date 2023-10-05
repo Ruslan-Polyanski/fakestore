@@ -1,10 +1,9 @@
-import { useEffect } from 'react';
-import { getProducts } from './products-slice';
 import { useDispatch, useSelector } from 'react-redux'; 
 import { AppDispatch, RootState } from '../../store';
 import style from './style.module.css';
+import { useEffect } from 'react';
+import { getLimitProductsData } from '../limitProducts/limit-products-slice';
 import { Link } from 'react-router-dom';
-
 
 type Product = {
   category: string
@@ -19,25 +18,22 @@ type Product = {
   }
 }
 
+const limitProductsSelector = (state: RootState) => state.limitProducts;
 
-const productsSelector = (state: RootState) => state.products;
-
-
-const Products = () => {
-  
-  const allProducts = useSelector(productsSelector)
+const LimitProducts = () => {
   const dispatch: AppDispatch = useDispatch();
+  const limitProducts = useSelector(limitProductsSelector);
 
   useEffect(() => {
-    dispatch(getProducts())
-  }, [dispatch])
+    dispatch(getLimitProductsData(10))
+  },[dispatch])
 
   return (
     <div className={style.products}>
-      { allProducts.map((element: Product) => <ProductItem key={element.id} {...element} />)}
+      { limitProducts.map((element: Product) => <ProductItem key={element.id} {...element} />)}
     </div>
   )
-}
+};
 
 const ProductItem = (props: Product) => {
   return (
@@ -54,4 +50,4 @@ const ProductItem = (props: Product) => {
   )
 }
 
-export { Products };
+export { LimitProducts }

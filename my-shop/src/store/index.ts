@@ -3,6 +3,7 @@ import { preloaderSlice } from '../features/preloader/preloader-slice';
 import { userSlice } from '../features/user/user-slice';
 import { productSlice } from '../features/products/products-slice';
 import { productPageSlice } from '../features/product/product-slice';
+import { limitProductSlice } from '../features/limitProducts/limit-products-slice';
 
 
 const store = configureStore({
@@ -11,6 +12,7 @@ const store = configureStore({
     user: userSlice.reducer,
     products: productSlice.reducer,
     product: productPageSlice.reducer,
+    limitProducts: limitProductSlice.reducer,
   },
   devTools: true,
 });

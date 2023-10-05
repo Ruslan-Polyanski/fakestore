@@ -1,0 +1,13 @@
+
+.box {
+  display: flex;
+  justify-content: center;
+}
+
+.slider {
+  width: 150px;
+}
+
+.title {
+  text-align: center;
+}
