@@ -25,7 +25,7 @@ const productsSelector = (state: RootState) => state.products;
 
 const Products = () => {
   
-  const allProducts = useSelector(productsSelector)
+  const allProducts = useSelector(productsSelector);
   const dispatch: AppDispatch = useDispatch();
 
   useEffect(() => {

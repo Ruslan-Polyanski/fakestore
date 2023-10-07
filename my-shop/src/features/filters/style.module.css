@@ -4,10 +4,13 @@
   justify-content: center;
 }
 
-.slider {
-  width: 150px;
+.box__filters {
+  display: flex;
+  align-items: center;
 }
 
-.title {
-  text-align: center;
+.slider {
+  width: 150px;
+  margin-left: 50px;
+  margin-top: 5px;
 }

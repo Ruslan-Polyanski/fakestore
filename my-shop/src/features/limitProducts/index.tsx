@@ -19,14 +19,16 @@ type Product = {
 }
 
 const limitProductsSelector = (state: RootState) => state.limitProducts;
+const limitItems = (state: RootState) => state.filters.limitsSlider;
 
 const LimitProducts = () => {
   const dispatch: AppDispatch = useDispatch();
   const limitProducts = useSelector(limitProductsSelector);
+  const dataLimitItems = useSelector(limitItems);
 
   useEffect(() => {
-    dispatch(getLimitProductsData(10))
-  },[dispatch])
+    dispatch(getLimitProductsData(dataLimitItems))
+  },[dispatch, dataLimitItems])
 
   return (
     <div className={style.products}>
