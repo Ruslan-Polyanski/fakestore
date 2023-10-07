@@ -1,9 +1,9 @@
 import { createBrowserRouter } from 'react-router-dom';
 import App from '../App';
-import { Products } from '../features/products';
 import { ProductPage } from '../features/product'; 
-import { LimitProducts } from '../features/limitProducts';
 import { Filters } from '../features/filters';
+import { Content } from '../components/content';
+
 
 const router = createBrowserRouter([
   {
@@ -15,18 +15,9 @@ const router = createBrowserRouter([
         element: (
           <>
             <Filters />
-            <Products />
+            <Content />
           </>
         ),
-      },
-      {
-        path: '/limit',
-        element: (
-          <>
-            <Filters />
-            <LimitProducts />
-          </>
-        )
       },
       {
         path: '/:productId', 
