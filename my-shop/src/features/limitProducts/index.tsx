@@ -20,11 +20,39 @@ type Product = {
 
 const limitProductsSelector = (state: RootState) => state.limitProducts;
 const limitItems = (state: RootState) => state.filters.limitsSlider;
+const sortData = (state: RootState) => state.filters.sort;
 
 const LimitProducts = () => {
   const dispatch: AppDispatch = useDispatch();
   const limitProducts = useSelector(limitProductsSelector);
   const dataLimitItems = useSelector(limitItems);
+  const sort = useSelector(sortData);
+
+  let productsSort = [...limitProducts];
+
+  if(sort === 'top'){
+    productsSort = productsSort.sort((a: Product, b: Product) => {
+      if(a.price < b.price){
+        return -1;
+      }
+      if(a.price > b.price){
+        return 1;
+      }
+      return 0;
+    })
+  }
+
+  if(sort === 'bottom'){
+    productsSort = productsSort.sort((a: Product, b: Product) => {
+      if(a.price > b.price){
+        return -1;
+      }
+      if(a.price < b.price){
+        return 1;
+      }
+      return 0;
+    })
+  }
 
   useEffect(() => {
     dispatch(getLimitProductsData(dataLimitItems))
@@ -32,7 +60,7 @@ const LimitProducts = () => {
 
   return (
     <div className={style.products}>
-      { limitProducts.map((element: Product) => <ProductItem key={element.id} {...element} />)}
+      { productsSort.map((element: Product) => <ProductItem key={element.id} {...element} />)}
     </div>
   )
 };

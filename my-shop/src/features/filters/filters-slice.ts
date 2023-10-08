@@ -6,6 +6,7 @@ const filtersSlice = createSlice({
   initialState: {
     invisible: true,
     limitsSlider: 3,
+    sort: '',
   },
   reducers: {
     setVisibleFilters: (state, action) => {
@@ -13,11 +14,14 @@ const filtersSlice = createSlice({
     },
     setLimitSlider: (state, action) => {
       state.limitsSlider = action.payload;
+    }, 
+    setSort: (state, action) => {
+      state.sort = action.payload;
     }
   }
 });
 
-const { setVisibleFilters, setLimitSlider } = filtersSlice.actions;
+const { setVisibleFilters, setLimitSlider, setSort } = filtersSlice.actions;
 
 const setVisibleFiltersData = (data: boolean) => {
   return (dispatch: Dispatch) => {
@@ -31,5 +35,11 @@ const setLimitSliderData = (num: number) => {
   }
 }
 
+const setSortData = (data: string) => {
+  return (dispatch: Dispatch) => {
+    dispatch(setSort(data))
+  }
+}
 
-export { filtersSlice, setVisibleFiltersData, setLimitSliderData }
+
+export { filtersSlice, setVisibleFiltersData, setLimitSliderData, setSortData }
