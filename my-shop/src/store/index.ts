@@ -5,6 +5,7 @@ import { productSlice } from '../features/products/products-slice';
 import { productPageSlice } from '../features/product/product-slice';
 import { limitProductSlice } from '../features/limitProducts/limit-products-slice';
 import { filtersSlice } from '../features/filters/filters-slice';
+import { categoriesSlice } from '../features/categories/categories-slice';
 
 
 const store = configureStore({
@@ -15,6 +16,7 @@ const store = configureStore({
     product: productPageSlice.reducer,
     limitProducts: limitProductSlice.reducer,
     filters: filtersSlice.reducer,
+    categories: categoriesSlice.reducer
   },
   devTools: true,
 });

@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../store';
 import { setVisibleFiltersData, setLimitSliderData, setSortData } from './filters-slice';
 import { useEffect } from 'react';
+import { Categories } from '../categories';
 
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
@@ -57,6 +58,9 @@ const Filters = () => {
         </div>
         <div className={style.sort}>
             <BasicSelect />
+        </div>
+        <div className={style.cat}>
+          <Categories />
         </div>
       </div>
     </div>
