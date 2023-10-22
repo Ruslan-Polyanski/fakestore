@@ -28,6 +28,8 @@ const Products = () => {
   const allProducts = useSelector(productsSelector);
   const dispatch: AppDispatch = useDispatch();
 
+  console.log('Products')
+
   useEffect(() => {
     dispatch(getProducts())
   }, [dispatch])

@@ -8,6 +8,8 @@ const showFilters = (state: RootState) => state.filters.invisible;
 const Content = () => {
 
   const isVisibleFilters = useSelector(showFilters);
+
+  console.log('Content')
  
   return (
     <>

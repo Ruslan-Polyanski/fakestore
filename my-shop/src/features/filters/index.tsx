@@ -1,11 +1,11 @@
 import style from './style.module.css';
 import { Slider } from '@mui/material';
-import Checkbox from '@mui/material/Checkbox';
 import { useDispatch, useSelector } from 'react-redux'; 
 import { AppDispatch, RootState } from '../../store';
-import { setVisibleFiltersData, setLimitSliderData, setSortData } from './filters-slice';
-import { useEffect } from 'react';
+import { setLimitSliderData, setSortData } from './filters-slice';
+import { useEffect, memo } from 'react';
 import { Categories } from '../categories';
+import { CheckboxCmponent } from '../../components/checkbox';
 
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
@@ -21,13 +21,10 @@ const sortData = (state: RootState) => state.filters.sort;
 const Filters = () => {
   const dispatch: AppDispatch = useDispatch();
   const countProducts = useSelector(allProducts).length;
-  const inVisibleFilters = useSelector(showFilters);
   const dataLimitItems = useSelector(limitItems);
+  const inVisibleFilters = useSelector(showFilters);
 
-
-  const handleChangeVisibleFilters = (event: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(setVisibleFiltersData(!event.target.checked))
-  };
+  console.log('Filters')
 
   const onChangeLimitHandler = (event: Event, newValue: number | number[]) => {
     dispatch(setLimitSliderData(newValue as number))
@@ -41,10 +38,7 @@ const Filters = () => {
   return (
     <div className={style.box}>
       <div className={style.box__filters}>
-        <Checkbox
-              checked={!inVisibleFilters}
-              onChange={handleChangeVisibleFilters}
-              inputProps={{ 'aria-label': 'controlled' }} />
+        <CheckboxCmponent />
         <p>Show filters</p>
         <div className={style.slider}>
           <Slider 
@@ -57,7 +51,7 @@ const Filters = () => {
               valueLabelDisplay="auto" />
         </div>
         <div className={style.sort}>
-            <BasicSelect />
+          <BasicSelect />
         </div>
         <div className={style.cat}>
           <Categories />
@@ -67,10 +61,12 @@ const Filters = () => {
   )
 };
 
-const BasicSelect = () => {
+const BasicSelect = memo(() => {
   const inVisibleFilters = useSelector(showFilters);
   const sort = useSelector(sortData)
   const dispatch: AppDispatch = useDispatch();
+
+  console.log('BasicSelect')
 
   const handleChange = (event: SelectChangeEvent) => {
     dispatch(setSortData(event.target.value))
@@ -94,6 +90,6 @@ const BasicSelect = () => {
       </FormControl>
     </Box>
   );
-}
+})
 
 export { Filters }
