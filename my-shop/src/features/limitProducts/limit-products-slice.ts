@@ -8,7 +8,10 @@ const limitProductSlice = createSlice({
   reducers: {
     setPageLimitProducts: (state, action) => {
       return action.payload;
-    }
+    },
+    // setProductsCategory: (state, action) => {
+    //   return action.payload;
+    // }
   }
 });
 

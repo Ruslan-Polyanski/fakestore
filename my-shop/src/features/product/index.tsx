@@ -26,7 +26,7 @@ const ProductPage = () => {
   const dispatch: AppDispatch = useDispatch();
   const productData: Product = useSelector(productSelector);
 
-  console.log(productData)
+  console.log('ProductPage')
 
   useEffect(() => {
     dispatch(getProductData(productId))

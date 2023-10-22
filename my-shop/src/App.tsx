@@ -14,6 +14,8 @@ const App = () => {
   const isPreloader = useSelector(selectorPreloader);
   const dispatch: AppDispatch = useDispatch();
 
+  console.log('App')
+
   useEffect(() => {
     dispatch(getAuthorization())
   }, [dispatch])

@@ -5,7 +5,7 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { useDispatch, useSelector } from 'react-redux'; 
 import { AppDispatch, RootState } from '../../store';
-import { useEffect, useId } from 'react';
+import { useEffect, useId, memo } from 'react';
 import { setCategoriesData } from './categories-slice';
 import { setCategoryData } from '../filters/filters-slice';
 
@@ -15,13 +15,15 @@ const getCategories = (state: RootState) => state.categories;
 const getCategory = (state: RootState) => state.filters.category;
 
 
-const Categories = () => {
+const Categories = memo(() => {
 
   const inVisibleFilters = useSelector(showFilters);
   const dispatch: AppDispatch = useDispatch();
   const categories = useSelector(getCategories);
   const category = useSelector(getCategory);
   const id = useId();
+
+  console.log(category)
 
   useEffect(() => {
     dispatch(setCategoriesData())
@@ -48,6 +50,6 @@ const Categories = () => {
       </FormControl>
     </Box>
   );
-}
+})
 
 export { Categories }

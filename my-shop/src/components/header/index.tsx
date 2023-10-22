@@ -10,6 +10,8 @@ const selectorIsLogin = (state: RootState) => state.user.status;
 const Header = () => {
   const buttonLogin = useSelector(selectorIsLogin);
 
+  console.log('Header')
+
   return (
     <header className={style.header}>
       <Link to='/' className={style.logo}>Logo</Link>

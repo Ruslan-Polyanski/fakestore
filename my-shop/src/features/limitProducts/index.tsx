@@ -21,12 +21,14 @@ type Product = {
 const limitProductsSelector = (state: RootState) => state.limitProducts;
 const limitItems = (state: RootState) => state.filters.limitsSlider;
 const sortData = (state: RootState) => state.filters.sort;
+const dataCategory = (state: RootState) => state.filters.category;
 
 const LimitProducts = () => {
   const dispatch: AppDispatch = useDispatch();
   const limitProducts = useSelector(limitProductsSelector);
   const dataLimitItems = useSelector(limitItems);
   const sort = useSelector(sortData);
+  const categoryFilters = useSelector(dataCategory);
 
   let productsSort = [...limitProducts];
 
@@ -54,9 +56,16 @@ const LimitProducts = () => {
     })
   }
 
+  if(categoryFilters){
+    productsSort = productsSort.filter((item: any) => item.category === categoryFilters)
+  }
+
+
   useEffect(() => {
     dispatch(getLimitProductsData(dataLimitItems))
   },[dispatch, dataLimitItems])
+
+  console.log(dataLimitItems)
 
   return (
     <div className={style.products}>
